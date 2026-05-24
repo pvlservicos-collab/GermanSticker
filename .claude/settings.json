@@ -44,7 +44,9 @@
       "PowerShell(Stop-Process -Id \\(Get-NetTCPConnection -LocalPort 3008 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -ErrorAction SilentlyContinue\\) -Force -ErrorAction SilentlyContinue; Write-Output \"ok\")",
       "PowerShell(Stop-Process -Id \\(Get-NetTCPConnection -LocalPort 3009 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -ErrorAction SilentlyContinue\\) -Force -ErrorAction SilentlyContinue; Write-Output \"ok\")",
       "Bash(curl -s http://localhost:3010)",
-      "PowerShell(Get-NetTCPConnection -LocalPort 3000,3001,3007,3008,3009,3010 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Write-Output \"Todos os servidores encerrados\")"
+      "PowerShell(Get-NetTCPConnection -LocalPort 3000,3001,3007,3008,3009,3010 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Write-Output \"Todos os servidores encerrados\")",
+      "Bash(dir \"c:\\\\Users\\\\pedro\\\\Desktop\\\\a VINICIUS WEB FOLEM MIDIA\\\\oferta-copa-ar\\\\public\" /b)",
+      "Bash(findstr /i \"3x\\\\|10x\\\\|3k\\\\|sorteio\\\\|pack\\\\|figurinha-3\\\\|figurinha-10\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\pedro\\Desktop\\a VINICIUS WEB FOLEM MIDIA\\oferta-copa-br\\src\\app\\preview",

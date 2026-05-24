@@ -136,7 +136,7 @@ const CATALOG: CatalogProduct[] = [
     section: "sorteio",
     name: "Pacote 3×",
     desc: "Figurinha em grade 3×3 para impressão — 9 unidades por folha",
-    renderImage: (bought) => <ProductImg src="/3k.jpg" alt="Pacote 3x" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/3x.webp" alt="Pacote 3x" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HP",
     boughtMessage: "Você já aumentou suas chances",
     checkBought: (d) =>
@@ -153,7 +153,7 @@ const CATALOG: CatalogProduct[] = [
     section: "sorteio",
     name: "Pacote 10×",
     desc: "10 folhas com sua figurinha — máximo para presentear",
-    renderImage: (bought) => <ProductImg src="/10x.jpg" alt="Pacote 10x" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/10x.webp" alt="Pacote 10x" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HS",
     boughtMessage: "Você já aumentou suas chances",
     checkBought: (d) =>
