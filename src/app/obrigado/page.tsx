@@ -462,21 +462,6 @@ export default function Obrigado() {
           )}
         </div>
 
-        {/* CTA criar nova */}
-        <a
-          href="/"
-          onClick={() => {
-            try { localStorage.removeItem("figurinha_sticker_id"); } catch { /* ignore */ }
-            try { sessionStorage.removeItem("figurinha_sticker_url"); sessionStorage.removeItem("figurinha_sticker_id"); } catch { /* ignore */ }
-          }}
-          style={{
-            display: "block", textAlign: "center",
-            color: "rgba(0,35,149,.45)", fontSize: 13,
-            textDecoration: "underline", padding: "8px",
-          }}
-        >
-          Crear nueva figurita
-        </a>
       </div>
 
       <FaqBubble />
