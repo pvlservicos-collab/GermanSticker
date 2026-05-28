@@ -44,7 +44,7 @@ const initialData: QuizData = {
 
 type AppStep = "hero" | "quiz-1" | "loading-photo" | "quiz-2" | "quiz-3" | "confirm" | "loading-generate" | "result";
 
-const SEGUNDA_CHECKOUT = "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2GE";
+const SEGUNDA_CHECKOUT = "https://pay.cakto.com.br/38fedh5";
 const SEGUNDA_PRICE = "AR$7.900";
 
 export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: { checkoutUrl?: string; price?: string; oferta?: string }) {
