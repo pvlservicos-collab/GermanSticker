@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     if (typeof step !== "string" || step.length > 32) return new NextResponse(null, { status: 204 });
     if (email && (typeof email !== "string" || email.length > 20)) return new NextResponse(null, { status: 204 });
     if (nome && (typeof nome !== "string" || nome.length > 80)) return new NextResponse(null, { status: 204 });
-    const validOferta = (oferta === "a" || oferta === "b" || oferta === "segunda" || oferta === "pets") ? oferta : null;
+    const validOferta = (oferta === "a" || oferta === "segunda" || oferta === "pets") ? oferta : null;
 
     const sql = getDb();
     // Lazy migration — cria tabela e coluna se não existirem (idempotente)

@@ -37,6 +37,8 @@ export async function GET(req: NextRequest) {
   }
 
   const sql = getDb();
+  // Migração: order_id precisa ser TEXT para suportar "manual_TIMESTAMP"
+  await sql`ALTER TABLE pedido_items ALTER COLUMN order_id TYPE TEXT USING order_id::TEXT`.catch(() => {});
   const { searchParams } = new URL(req.url);
   const q = (searchParams.get("q") || "").trim();
 
@@ -135,6 +137,11 @@ export async function DELETE(req: NextRequest) {
   const id = searchParams.get("id");
   if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 });
 
-  await sql`DELETE FROM pedido_items WHERE id = ${Number(id)} AND order_id LIKE 'manual_%'`;
-  return NextResponse.json({ ok: true });
+  try {
+    await sql`DELETE FROM pedido_items WHERE id = ${Number(id)} AND order_id LIKE 'manual_%'`;
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[orderbumps DELETE]", err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
+  }
 }

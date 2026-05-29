@@ -33,7 +33,10 @@
       "Bash(ConvertTo-Json)",
       "Bash(findstr /i \"neon\\\\|postgres\\\\|database\")",
       "Bash(node -e ' *)",
-      "Bash(grep -E \"\\\\.\\(ts|js|sql\\)$\")"
+      "Bash(grep -E \"\\\\.\\(ts|js|sql\\)$\")",
+      "Bash(xargs grep -l \"CREATE TABLE\\\\|migration\\\\|schema\")",
+      "Bash(xargs grep -l \"CREATE TABLE\")",
+      "Bash(del \"c:\\\\Users\\\\pedro\\\\Desktop\\\\a VINICIUS WEB FOLEM MIDIA\\\\oferta-copa-ar\\\\src\\\\app\\\\b\\\\page.tsx\")"
     ]
   }
 }

@@ -61,10 +61,6 @@ export async function GET(req: NextRequest) {
           COUNT(DISTINCT session_id) FILTER (WHERE step IN ('result_view','result_ok') AND (oferta='a' OR oferta IS NULL))::int  AS viu_preco_a,
           COUNT(DISTINCT session_id) FILTER (WHERE cta_clicked = TRUE AND (oferta='a' OR oferta IS NULL))::int                  AS cta_a,
           COUNT(DISTINCT session_id) FILTER (WHERE obrigado = TRUE    AND (oferta='a' OR oferta IS NULL))::int                  AS obrigados_a,
-          COUNT(DISTINCT session_id) FILTER (WHERE oferta = 'b')::int                                                           AS total_b,
-          COUNT(DISTINCT session_id) FILTER (WHERE step IN ('result_view','result_ok') AND oferta='b')::int                     AS viu_preco_b,
-          COUNT(DISTINCT session_id) FILTER (WHERE cta_clicked = TRUE AND oferta='b')::int                                      AS cta_b,
-          COUNT(DISTINCT session_id) FILTER (WHERE obrigado = TRUE    AND oferta='b')::int                                      AS obrigados_b,
           COUNT(DISTINCT session_id) FILTER (WHERE oferta = 'pets')::int                                                        AS total_pets,
           COUNT(DISTINCT session_id) FILTER (WHERE step IN ('result_view','result_ok') AND oferta='pets')::int                  AS viu_preco_pets,
           COUNT(DISTINCT session_id) FILTER (WHERE cta_clicked = TRUE AND oferta='pets')::int                                   AS cta_pets,
@@ -77,7 +73,6 @@ export async function GET(req: NextRequest) {
         SELECT step,
           COUNT(*)::int AS count,
           COUNT(*) FILTER (WHERE oferta = 'a' OR oferta IS NULL)::int AS count_a,
-          COUNT(*) FILTER (WHERE oferta = 'b')::int                   AS count_b,
           COUNT(*) FILTER (WHERE oferta = 'pets')::int                AS count_pets
         FROM sessions
         WHERE email IS NOT NULL ${pfSimple}
@@ -89,7 +84,6 @@ export async function GET(req: NextRequest) {
         SELECT updated_at::date AS day,
           COUNT(DISTINCT session_id)::int AS count,
           COUNT(DISTINCT session_id) FILTER (WHERE oferta = 'a' OR oferta IS NULL)::int AS count_a,
-          COUNT(DISTINCT session_id) FILTER (WHERE oferta = 'b')::int                   AS count_b,
           COUNT(DISTINCT session_id) FILTER (WHERE oferta = 'pets')::int                AS count_pets
         FROM sessions
         WHERE email IS NOT NULL AND updated_at >= NOW() - INTERVAL '14 days'
@@ -108,7 +102,7 @@ export async function GET(req: NextRequest) {
       `,
     ]);
 
-    const s   = sessionRow[0] ?? { total: 0, viu_preco: 0, cta: 0, obrigados: 0, total_a: 0, viu_preco_a: 0, cta_a: 0, obrigados_a: 0, total_b: 0, viu_preco_b: 0, cta_b: 0, obrigados_b: 0, total_pets: 0, viu_preco_pets: 0, cta_pets: 0, obrigados_pets: 0 };
+    const s   = sessionRow[0] ?? { total: 0, viu_preco: 0, cta: 0, obrigados: 0, total_a: 0, viu_preco_a: 0, cta_a: 0, obrigados_a: 0, total_pets: 0, viu_preco_pets: 0, cta_pets: 0, obrigados_pets: 0 };
     const seg = segundaRow[0] ?? { cliques: 0, starts: 0, viu_preco_seg: 0, cta_seg: 0, obrigados_seg: 0 };
 
     const base = {
@@ -116,7 +110,6 @@ export async function GET(req: NextRequest) {
         total: s.total, cta: s.cta, obrigados: s.obrigados,
         daily: dailySessions,
         a:    { total: s.total_a,    viu_preco: s.viu_preco_a,    cta: s.cta_a,    obrigados: s.obrigados_a    },
-        b:    { total: s.total_b,    viu_preco: s.viu_preco_b,    cta: s.cta_b,    obrigados: s.obrigados_b    },
         pets: { total: s.total_pets, viu_preco: s.viu_preco_pets, cta: s.cta_pets, obrigados: s.obrigados_pets },
       },
       funnel: funnelSteps,

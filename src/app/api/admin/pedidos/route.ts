@@ -20,6 +20,7 @@ export async function GET(req: NextRequest) {
   let pedidos;
   let totalFiltered;
 
+  try {
   if (all) {
     const nomeFilter = nome.trim() ? sql`AND p.nome ILIKE ${`%${nome.trim()}%`}` : sql``;
     const foneFilter = fone.trim() ? sql`AND p.telefone ILIKE ${`%${fone.trim()}%`}` : sql``;
@@ -99,6 +100,11 @@ export async function GET(req: NextRequest) {
     limit,
     hasMore: offset + pedidos.length < totalFiltered,
   });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[pedidos] erro:", msg);
+    return NextResponse.json({ pedidos: [], totalFiltered: 0, stats: {}, error: msg }, { status: 500 });
+  }
 }
 
 export async function DELETE(req: NextRequest) {
@@ -111,12 +117,12 @@ export async function DELETE(req: NextRequest) {
   const email = searchParams.get("email");
 
   if (email === "all") {
-    await sql`DELETE FROM pedidos`;
+    try { await sql`DELETE FROM pedidos`; } catch { /* ok */ }
     return NextResponse.json({ ok: true, message: "Todos os pedidos removidos" });
   }
 
   if (email) {
-    await sql`DELETE FROM pedidos WHERE email = ${email}`;
+    try { await sql`DELETE FROM pedidos WHERE email = ${email}`; } catch { /* ok */ }
     return NextResponse.json({ ok: true });
   }
 

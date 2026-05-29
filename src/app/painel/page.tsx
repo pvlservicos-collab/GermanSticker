@@ -64,12 +64,11 @@ interface FunilData {
   // Session-based (100% reliable)
   sessions: {
     total: number; cta: number; obrigados: number;
-    daily: { day: string; count: number; count_a: number; count_b: number; count_pets?: number }[];
+    daily: { day: string; count: number; count_a: number; count_pets?: number }[];
     a:    { total: number; viu_preco: number; cta: number; obrigados: number };
-    b:    { total: number; viu_preco: number; cta: number; obrigados: number };
     pets: { total: number; viu_preco: number; cta: number; obrigados: number };
   };
-  funnel: { step: string; count: number; count_a: number; count_b: number; count_pets?: number }[];
+  funnel: { step: string; count: number; count_a: number; count_pets?: number }[];
   // Sales (webhook-based)
   vendas: {
     pagos: number;
@@ -122,7 +121,7 @@ const FUNNEL_STEPS = [
 ];
 
 const EMPTY_FUNIL: FunilData = {
-  sessions: { total: 0, cta: 0, obrigados: 0, daily: [], a: { total: 0, viu_preco: 0, cta: 0, obrigados: 0 }, b: { total: 0, viu_preco: 0, cta: 0, obrigados: 0 }, pets: { total: 0, viu_preco: 0, cta: 0, obrigados: 0 } },
+  sessions: { total: 0, cta: 0, obrigados: 0, daily: [], a: { total: 0, viu_preco: 0, cta: 0, obrigados: 0 }, pets: { total: 0, viu_preco: 0, cta: 0, obrigados: 0 } },
   funnel: [],
   vendas: { pagos: 0, a_count: 0, a_total: 0, b_count: 0, b_total: 0, bumps_count: 0, bumps_receita: 0, daily: [] },
   segunda: { cliques: 0, starts: 0, compras: 0, receita: null, viu_preco: 0, cta: 0, obrigados: 0 },
@@ -653,7 +652,6 @@ function MetricasTab() {
             labels: dailyLabels,
             datasets: [
               { label: "Oferta A", data: last14.map(d => dailyMap.get(d)?.count_a || 0), backgroundColor: "#3b82f699", borderColor: "#3b82f6", borderWidth: 1.5, borderRadius: 3 },
-              { label: "Oferta B", data: last14.map(d => dailyMap.get(d)?.count_b || 0), backgroundColor: "#f59e0b99", borderColor: "#f59e0b", borderWidth: 1.5, borderRadius: 3 },
             ],
           },
           options: { responsive: true, plugins: { legend: { position: "top" as const, labels: { boxWidth: 12, font: { size: 11 } } } }, scales: { y: { beginAtZero: true, grid: { color: "#E2E8F0" } }, x: { grid: { display: false } } } },
@@ -668,7 +666,6 @@ function MetricasTab() {
             labels: FUNNEL_STEPS.map(s => s.label),
             datasets: [
               { label: "Oferta A", data: FUNNEL_STEPS.map(s => data.funnel.find(f => f.step === s.key || (s.key === "result_view" && f.step === "result_ok"))?.count_a || 0), backgroundColor: "#3b82f666", borderColor: "#3b82f6", borderWidth: 1.5, borderRadius: 3 },
-              { label: "Oferta B", data: FUNNEL_STEPS.map(s => data.funnel.find(f => f.step === s.key || (s.key === "result_view" && f.step === "result_ok"))?.count_b || 0), backgroundColor: "#f59e0b66", borderColor: "#f59e0b", borderWidth: 1.5, borderRadius: 3 },
             ],
           },
           options: { responsive: true, indexAxis: "y" as const, plugins: { legend: { position: "top" as const, labels: { boxWidth: 12, font: { size: 11 } } } }, scales: { x: { beginAtZero: true, grid: { color: "#E2E8F0" } }, y: { grid: { display: false } } } },
@@ -749,9 +746,7 @@ function MetricasTab() {
       {/* ── Visão Geral ── */}
       {sub === "comp" && (() => {
         const sa = s.a ?? { total: 0, cta: 0, obrigados: 0 };
-        const sb = s.b ?? { total: 0, cta: 0, obrigados: 0 };
         const taxaA = sa.total > 0 ? Math.round(sa.obrigados / sa.total * 100) : 0;
-        const taxaB = sb.total > 0 ? Math.round(sb.obrigados / sb.total * 100) : 0;
 
         const ofertaCol = (label: string, color: string, d: { total: number; viu_preco: number; cta: number; obrigados: number }, taxa: number) => (
           <div style={{ background: "#fff", borderRadius: 12, padding: "16px 18px", boxShadow: "0 1px 3px rgba(0,0,0,.07)", flex: 1 }}>
@@ -779,8 +774,7 @@ function MetricasTab() {
         return (
           <>
             <div style={{ display: "flex", gap: 16, marginBottom: 24 }}>
-              {ofertaCol("Oferta A — R$12,90", "#1d4ed8", sa, taxaA)}
-              {ofertaCol("Oferta B — R$9,90",  "#92400e", sb, taxaB)}
+              {ofertaCol("Oferta Principal — $3.500", "#1d4ed8", sa, taxaA)}
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
               <div style={chartBox}>
@@ -841,7 +835,7 @@ function MetricasTab() {
           <>
             <div style={{ background: "#fff", borderRadius: 12, padding: "16px 18px", boxShadow: "0 1px 3px rgba(0,0,0,.07)", marginBottom: 24 }}>
               <div style={{ fontSize: 12, fontWeight: 800, color: "#16a34a", textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 14, borderBottom: "2px solid #16a34a", paddingBottom: 8 }}>
-                Oferta Pets — AR$9.900
+                Oferta Pets — $3.500
               </div>
               {[
                 { label: "Sessões",           value: sp.total,      sub: "telefones capturados" },

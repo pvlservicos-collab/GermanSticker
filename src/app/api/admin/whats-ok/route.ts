@@ -7,13 +7,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { pedidoId } = await req.json();
-  if (!pedidoId) {
-    return NextResponse.json({ error: "pedidoId obrigatório" }, { status: 400 });
+  let body: { pedidoId?: unknown };
+  try { body = await req.json(); } catch {
+    return NextResponse.json({ error: "JSON inválido" }, { status: 400 });
   }
+  const pedidoId = Number(body?.pedidoId);
+  if (!pedidoId) return NextResponse.json({ error: "pedidoId obrigatório" }, { status: 400 });
 
-  const sql = getDb();
-  await sql`UPDATE pedidos SET whats_enviado = TRUE WHERE id = ${pedidoId}`;
-
-  return NextResponse.json({ ok: true });
+  try {
+    const sql = getDb();
+    await sql`UPDATE pedidos SET whats_enviado = TRUE WHERE id = ${pedidoId}`;
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[whats-ok]", err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
+  }
 }

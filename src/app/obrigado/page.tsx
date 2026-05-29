@@ -298,7 +298,7 @@ export default function Obrigado() {
               </p>
               <p style={{ margin: 0, fontSize: 16, fontWeight: 900, color: "#002395", lineHeight: 1.25 }}>
                 Generá tu segunda figurita por solo{" "}
-                <span style={{ color: "#009C3B" }}>R$7,90</span>
+                <span style={{ color: "#009C3B" }}>$3.500</span>
               </p>
             </div>
             <a
