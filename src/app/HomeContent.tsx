@@ -75,6 +75,7 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
   const dataRef = useRef(data);
   dataRef.current = data;
   const sessionRef = useRef<string>("");
+  const generatingRef = useRef(false);
 
   useEffect(() => {
     let sid = sessionStorage.getItem("_fsid");
@@ -283,6 +284,10 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
   const [retryCount, setRetryCount] = useState(0);
 
   const generateFigurinha = useCallback(async (retryAfterError?: string, attempt = 0) => {
+    if (generatingRef.current && attempt === 0) return; // guard contra duplo clique
+    if (attempt === 0) generatingRef.current = true;
+    const MAX_RETRIES = 4;
+    if (attempt > MAX_RETRIES) { generatingRef.current = false; return; }
     const current = dataRef.current;
     try {
       if (!current.foto) throw new Error("Sem foto");
@@ -309,6 +314,7 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
       const result = await res.json();
 
       if (res.ok && result.imageBase64) {
+        generatingRef.current = false;
         const dataUrl = `data:${result.mimeType};base64,${result.imageBase64}`;
         setStickerUrl(dataUrl);
         setStickerId(result.stickerId || "");
@@ -394,6 +400,7 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
           data={data}
           fotoPreviewUrl={fotoPreviewUrl}
           onConfirm={() => {
+            if (generatingRef.current) return;
             try { sessionStorage.setItem("_pending_tel", data.telefone.replace(/\D/g, "").slice(0, 20)); } catch { /* ignore */ }
             setGenStartTime(Date.now());
             setAppStep("loading-generate");
@@ -429,6 +436,7 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
               setAppStep("quiz-1");
               return;
             }
+            generatingRef.current = false;
             sessionStorage.removeItem("figurinha_sticker_url");
             sessionStorage.removeItem("figurinha_sticker_id");
             setGenStartTime(Date.now());
