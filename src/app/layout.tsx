@@ -27,7 +27,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://cdn.utmify.com.br" />
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script dangerouslySetInnerHTML={{ __html: `window.pixelId = "6a0b5813ba65d432c68aed1b"; var a = document.createElement("script"); a.setAttribute("async", ""); a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a);` }} />
+        <script dangerouslySetInnerHTML={{ __html: `window.pixelId = "6a1915dda9b3c3e00a76276a"; var a = document.createElement("script"); a.setAttribute("async", ""); a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a);` }} />
       </head>
       <body className="min-h-full flex flex-col">
         {children}

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 export default function UTMifyPixel() {
   useEffect(() => {
-    (window as any).pixelId = "6a0b5813ba65d432c68aed1b";
+    (window as any).pixelId = "6a1915dda9b3c3e00a76276a";
     const a = document.createElement("script");
     a.setAttribute("async", "");
     a.setAttribute("defer", "");
