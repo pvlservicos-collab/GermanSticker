@@ -383,9 +383,9 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
         {step === 1 && (
           <p className="text-center text-xs text-gray-400 mt-6" style={{ fontFamily: "var(--font-papernotes)" }}>
             Al enviar aceptás nuestra{" "}
-            <a href="/politica-de-privacidade" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600 transition-colors">
+            <span className="underline hover:text-gray-600 transition-colors cursor-default">
               política de privacidad
-            </a>
+            </span>
           </p>
         )}
 

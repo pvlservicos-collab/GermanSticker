@@ -89,8 +89,7 @@ export default function Hero({ onStart }: HeroProps) {
         className="text-lg md:text-xl max-w-md mb-5 leading-[1.2] md:leading-relaxed mt-8 md:mt-5"
         style={{ fontFamily: "var(--font-papernotes)" }}
       >
-        Con su nombre, su foto y el diseño de una verdadera figurita de colección.
-        Respondé unas preguntas y descubrí cómo quedaría tu pequeño campeón.
+        Respondé unas preguntas rápidas y generá en segundos la figurita del Mundial de tu pequeño campeón.
       </p>
 
       <button
