@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 @font-face {
   font-family: 'Papernotes';
   src: url('/fonts/papernotes/Papernotes.woff2') format('woff2'),

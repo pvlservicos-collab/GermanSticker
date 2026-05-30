@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 interface LoadingScreenProps {
   title: string;
@@ -35,6 +35,29 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
   const [elapsed, setElapsed] = useState(0);
   const [curiosidadeIndex, setCuriosidadeIndex] = useState(0);
   const start = useRef(startTime || Date.now());
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const p = v.play();
+    if (p !== undefined) p.catch(() => { /* bloqueado pelo browser */ });
+  }, []);
+
+  const togglePlay = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play().catch(() => {}); } else { v.pause(); }
+  }, []);
+
+  const restart = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+  }, []);
 
   useEffect(() => {
     start.current = startTime || Date.now();
@@ -100,12 +123,62 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
           </p>
         )}
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={gifUrl}
-          alt="Cargando..."
-          className={longWait ? "w-[65%] rounded-2xl object-cover" : "w-48 h-48 rounded-2xl object-cover"}
-        />
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+          <div style={{ position: "relative", height: 260, aspectRatio: "9/16" }}>
+            {!isPlaying && (
+              <div
+                style={{
+                  position: "absolute", inset: 0,
+                  borderRadius: 16,
+                  background: "linear-gradient(90deg, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0.14) 50%, rgba(0,0,0,0.06) 75%)",
+                  backgroundSize: "200% 100%",
+                  animation: "skeleton-shimmer 1.4s ease-in-out infinite",
+                }}
+              />
+            )}
+            <video
+              ref={videoRef}
+              src="/videoaguardo.mp4"
+              autoPlay
+              loop
+              playsInline
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              style={{
+                height: 260, width: "auto", aspectRatio: "9/16",
+                borderRadius: 16, objectFit: "cover",
+                opacity: isPlaying ? 1 : 0,
+                transition: "opacity 0.4s ease",
+                display: "block",
+              }}
+            />
+          </div>
+          <div style={{ display: "flex", gap: 10 }}>
+            <button
+              onClick={togglePlay}
+              aria-label={isPlaying ? "Pausar" : "Reproduzir"}
+              style={{
+                background: "#002395", color: "#FFDF00", border: "none",
+                borderRadius: 10, width: 42, height: 42, fontSize: 17,
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              }}
+            >
+              {isPlaying ? "⏸" : "▶"}
+            </button>
+            <button
+              onClick={restart}
+              aria-label="Recomeçar"
+              style={{
+                background: "#FFDF00", color: "#002395", border: "2px solid #002395",
+                borderRadius: 10, width: 42, height: 42, fontSize: 20,
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                fontWeight: 700,
+              }}
+            >
+              ↺
+            </button>
+          </div>
+        </div>
 
         {longWait && (
           <div className="text-center leading-snug">

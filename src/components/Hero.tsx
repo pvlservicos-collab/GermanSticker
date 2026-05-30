@@ -8,7 +8,8 @@ interface HeroProps {
 
 export default function Hero({ onStart }: HeroProps) {
   return (
-    <section className="flex flex-col items-center min-h-[100dvh] w-full px-5 pt-8 pb-4 text-center overflow-x-hidden justify-center gap-3 md:gap-2 md:py-6" style={{ background: "#74ACDF" }}>
+    <section className="flex flex-col items-center min-h-[100dvh] w-full px-5 pt-8 pb-4 text-center overflow-x-hidden justify-center gap-3 md:gap-2 md:py-6" style={{ background: "#74ACDF", position: "relative" }}>
+      <a href="/espera" style={{ position: "absolute", top: 10, right: 12, fontSize: 10, color: "rgba(0,0,0,0.25)", textDecoration: "none", fontFamily: "monospace" }}>⏳ espera</a>
       <h1
         className="text-[1.9rem] sm:text-[2.85rem] md:text-[3.42rem] lg:text-[3.42rem] font-normal leading-[1.32] mb-1 w-full max-w-2xl"
         style={{ fontFamily: "var(--font-titulo)" }}
