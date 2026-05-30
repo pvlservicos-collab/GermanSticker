@@ -183,13 +183,10 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
         {longWait && (
           <div className="text-center leading-snug">
             <p className="text-base font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              ¡Conseguí tu figurita HOY y participá por un sorteo de entradas para vivir el
+              ¡Conseguí tu figurita HOY y participá por un ingreso a la Copa!
             </p>
             <p className="text-4xl font-black text-copa-green my-1" style={{ fontFamily: "var(--font-titulo)" }}>
-              "Mundial 2026"
-            </p>
-            <p className="text-base font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              en vivo!
+              Copa del Mundo 2026
             </p>
             <p className="text-sm text-copa-blue mt-2" style={{ fontFamily: "var(--font-papernotes)" }}>
               Sorteo el 11/06/2026, inicio de la Copa.

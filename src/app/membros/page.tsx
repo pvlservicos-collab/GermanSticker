@@ -67,13 +67,13 @@ const CATALOG: CatalogProduct[] = [
     id: "rifa-sorte",
     section: "main",
     name: "Rifa da Sorte",
-    desc: (<>Sorteio em 11/06/2026<br /><span style={{ color: "#059669", fontWeight: 700 }}>Você já está participando! ✅</span></>),
+    desc: (<>Ingresso para a Copa — Sorteo el 11/06/2026<br /><span style={{ color: "#059669", fontWeight: 700 }}>Você já está participando! ✅</span></>),
     infoMode: true,
     renderImage: (bought) => <ProductImg src="/sorteio.webp" alt="Rifa da Sorte" bought={bought} />,
     getDownloadUrl: () => null,
     boughtExtra: (
       <div style={{ border: "1.5px solid #e2e8f0", borderRadius: 8, padding: "10px 12px", marginTop: 4 }}>
-        <p style={{ margin: "0 0 8px", fontSize: 10, fontWeight: 800, color: "#002395" }}>Resultado do sorteio:</p>
+        <p style={{ margin: "0 0 8px", fontSize: 10, fontWeight: 800, color: "#002395" }}>Resultado do ingresso:</p>
         <div style={{ minHeight: 40, borderRadius: 6, background: "#f8fafc" }} />
       </div>
     ),

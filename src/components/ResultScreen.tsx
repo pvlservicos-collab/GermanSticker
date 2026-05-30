@@ -105,23 +105,9 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
         <>
         <div className="flex flex-col items-center w-full max-w-sm animate-slide-up">
 
-          {/* Barra de progreso */}
-          <div className="w-full px-1 mb-5">
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-sm font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-                ¡Ya creaste tu figurita! 🔥
-              </span>
-              <span className="text-sm font-black text-copa-green" style={{ fontFamily: "var(--font-titulo)" }}>95%</span>
-            </div>
-            <div className="w-full rounded-full h-1.5 overflow-hidden" style={{ background: "rgba(0,48,135,0.15)" }}>
-              <div className="h-1.5 rounded-full transition-all duration-700" style={{ width: "95%", background: "linear-gradient(90deg, #009C3B, #00c94d)" }} />
-            </div>
-            <p className="text-xs mt-1 text-right" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,48,135,0.5)" }}>solo falta confirmar</p>
-          </div>
-
           {/* Preview */}
           <div
-            className="relative w-56 md:w-64 rounded-xl overflow-hidden shadow-2xl border-3 border-copa-blue mb-6"
+            className="relative w-48 md:w-56 rounded-xl overflow-hidden shadow-2xl border-3 border-copa-blue mb-6"
             onContextMenu={(e) => e.preventDefault()}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,7 +160,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             className="text-base text-gray-600 text-center mb-6"
             style={{ fontFamily: "var(--font-papernotes)" }}
           >
-            ¡Conseguí tu figurita HOY y participá por 1000 dólares!<br />Sorteo el 11/06/2026
+            ¡Conseguí tu figurita HOY y participá por un ingreso a la Copa!<br />Sorteo el 11/06/2026
           </p>
 
           <p
@@ -195,7 +181,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             }}
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              ⚽ RECIBIR MI FIGURITA
+              ⚽ DESBLOQUEAR MI FIGURITA
             </span>
           </button>
 
@@ -204,28 +190,6 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
           </p>
         </div>
 
-        {/* Testimonios */}
-        <div className="depoimentos-wrap mt-6 flex flex-col gap-2 px-4">
-          <p className="text-xs text-center font-bold tracking-widest uppercase" style={{ fontFamily: "var(--font-papernotes)", color: "rgba(0,48,135,0.5)" }}>
-            Lo que están diciendo
-          </p>
-          <div className="depoimentos-grid">
-            {["/dd1.png", "/dd2.png", "/dd3.png"].map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={src} alt={`Testimonio ${i + 1}`} className="rounded-lg shadow-md w-full" draggable={false} />
-            ))}
-          </div>
-        </div>
-
-        <style>{`
-          .depoimentos-wrap { width: min(360px, 90vw); }
-          .depoimentos-grid { display: flex; flex-direction: column-reverse; gap: 10px; }
-          @media (min-width: 641px) {
-            .depoimentos-wrap { width: min(680px, 90vw); }
-            .depoimentos-grid { flex-direction: row; gap: 12px; }
-            .depoimentos-grid img { flex: 1; min-width: 0; }
-          }
-        `}</style>
         </>
       )}
     </section>

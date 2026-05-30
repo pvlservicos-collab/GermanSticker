@@ -166,7 +166,7 @@ export default function PreviewClient({ imageUrl, nome, stickerId }: Props) {
         </p>
 
         <p className="text-base text-gray-600 text-center mb-6" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Adquira sua figurinha HOJE e concorra a 1000 reais<br />Sorteio será realizado dia 11/06/2026
+          Adquira sua figurinha HOJE e concorra a um ingresso para a Copa!<br />Sorteo el 11/06/2026
         </p>
 
         <p
