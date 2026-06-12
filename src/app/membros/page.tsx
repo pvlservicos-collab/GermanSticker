@@ -102,7 +102,7 @@ const CATALOG: CatalogProduct[] = [
     id: "messi",
     name: "Cromo Ronaldo",
     desc: "Camisola da seleção — pacote em PDF para impressão",
-    renderImage: (bought) => <ProductImg src="/figurinhamessi.webp" alt="Cromo Ronaldo" bought={bought} />,
+    renderImage: (bought) => <ProductImg src="/figurinhamodelo.webp" alt="Cromo Ronaldo" bought={bought} />,
     acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT",
     checkBought: (d) =>
       d.items.some(i =>
@@ -428,7 +428,7 @@ function MessiCard({ data, width = 250 }: { data: MemberData; width?: number }) 
       border: bought ? "2px solid #C8102E" : "2px solid transparent",
     }}>
       <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden" }}>
-        <ProductImg src="/figurinhamessi.webp" alt="Cromo Ronaldo" bought={bought} />
+        <ProductImg src="/figurinhamodelo.webp" alt="Cromo Ronaldo" bought={bought} />
         {!bought && (
           <div style={{
             position: "absolute", inset: 0, background: "rgba(15,15,15,.5)",
@@ -461,8 +461,8 @@ function MessiCard({ data, width = 250 }: { data: MemberData; width?: number }) 
               }}
             >⬇ Descarregar PNG</a>
             <a
-              href="/Fig messi imprimir.pdf"
-              download="cromo-messi-imprimir.pdf"
+              href="/cromoronaldo.pdf"
+              download="cromo-ronaldo.pdf"
               style={{
                 display: "block", textAlign: "center",
                 background: "#f8fafc", color: "#334155",
@@ -736,7 +736,7 @@ function MembrosContent() {
                 <span style={{ color: "#FFD700" }}>€1.000</span>!
               </p>
               <p style={{ margin: 0, color: "rgba(255,255,255,.7)", fontSize: 13, fontWeight: 600 }}>
-                Sorteio a <span style={{ color: "#FFD700", fontWeight: 800 }}>11/06/2026</span>
+                Sorteio a <span style={{ color: "#FFD700", fontWeight: 800 }}>11/07/2026</span>
               </p>
             </div>
           </>

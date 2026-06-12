@@ -190,7 +190,7 @@ export default function Obrigado() {
             📱 Descarrega o teu cromo com o teu número:
           </h2>
           <p style={{ fontSize: 14, color: "#64748b", margin: "0 0 20px", fontFamily: "var(--font-papernotes)" }}>
-            Escreve o teu WhatsApp (sem +351) para acederes ao teu cromo e todos os teus produtos.
+            Escreve o número que colocaste no início para aceder ao teu cromo e a todos os teus produtos.
           </p>
 
           <input

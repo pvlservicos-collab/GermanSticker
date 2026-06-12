@@ -127,7 +127,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
               Copa do Mundo 2026
             </p>
             <p className="text-sm text-copa-blue mt-2" style={{ fontFamily: "var(--font-papernotes)" }}>
-              Sorteio a 11/06/2026, início do Mundial.
+              Sorteio a 11/07/2026, início do Mundial.
             </p>
           </div>
         )}

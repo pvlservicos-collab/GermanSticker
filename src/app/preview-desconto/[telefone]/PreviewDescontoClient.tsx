@@ -166,7 +166,7 @@ export default function PreviewDescontoClient({ imageUrl, nome, stickerId }: Pro
         </p>
 
         <p className="text-base text-green-100 text-center mb-4" style={{ fontFamily: "var(--font-papernotes)" }}>
-          Obtém o teu cromo HOJE e participa num ingresso para o Mundial!<br />Sorteio a 11/06/2026
+          Obtém o teu cromo HOJE e participa num ingresso para o Mundial!<br />Sorteio a 11/07/2026
         </p>
 
         {/* Preço com desconto */}
