@@ -171,13 +171,13 @@ export default function PreviewDescontoClient({ imageUrl, nome, stickerId }: Pro
 
         {/* Preço com desconto */}
         <p className="text-lg text-gray-300 line-through text-center" style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}>
-          €3,90
+          €2,50
         </p>
         <p
           className="text-5xl md:text-6xl text-copa-green text-center mb-6 relative inline-block shine-effect"
           style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}
         >
-          €2,90
+          €2,00
         </p>
 
         <button

@@ -113,7 +113,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://media.giphy.com/media/qp61kl8rdZwuQ/giphy.gif"
+          src="https://media.giphy.com/media/yPNVFnPOyo3E4Peg8C/giphy.gif"
           alt="Ronaldo"
           style={{ height: 260, width: "auto", borderRadius: 16, objectFit: "cover", display: "block" }}
         />

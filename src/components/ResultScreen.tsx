@@ -167,7 +167,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             className="text-5xl md:text-6xl text-copa-green text-center mb-6 relative inline-block shine-effect"
             style={{ fontFamily: "'Montserrat', Arial Black, sans-serif", fontWeight: 900 }}
           >
-            {price || "€3,90"}
+            {price || "€2,50"}
           </p>
 
           <button
