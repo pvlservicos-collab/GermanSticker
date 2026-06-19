@@ -5,25 +5,12 @@ import { useState, useRef, useEffect } from "react";
 export interface QuizData {
   nome: string;
   dataNascimento: string;
-  telefone: string;
+  email: string;
   clube: string;
   jogadorFavorito: string;
   peso: string;
   altura: string;
   foto: File | null;
-}
-
-function formatPhone(input: string): string {
-  let digits = input.replace(/\D/g, "");
-  // Landeskennzahl entfernen: +49 / 0049 / 49
-  if (digits.startsWith("0049")) digits = digits.slice(4);
-  else if (digits.startsWith("49") && digits.length > 10) digits = digits.slice(2);
-  digits = digits.slice(0, 11);
-  const n = digits.length;
-  if (n === 0) return "";
-  if (n <= 4) return digits;
-  if (n <= 7) return `${digits.slice(0, 4)} ${digits.slice(4)}`;
-  return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
 }
 
 interface QuizStepProps {
@@ -93,8 +80,8 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
           const age = now.getFullYear() - birth.getFullYear();
           if (age < 0 || age > 120) newErrors.dataNascimento = "Ungültiges Datum";
         }
-        { const digits = data.telefone.replace(/\D/g, "");
-          if (digits.length < 10) newErrors.telefone = "Bitte gib eine gültige Handynummer ein (mind. 10 Ziffern)"; }
+        { const emailVal = data.email.trim();
+          if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) newErrors.email = "Bitte gib eine gültige E-Mail-Adresse ein"; }
         break;
       case 3:
         if (!data.clube || data.clube.trim().length < 2) newErrors.clube = "Bitte gib einen Verein ein oder wähle einen aus";
@@ -270,23 +257,23 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
             </div>
             {errors.dataNascimento && <p className="text-red-500 text-sm mt-1">{errors.dataNascimento}</p>}
 
-            {/* WhatsApp */}
+            {/* E-Mail */}
             <div>
-              <label className="block text-lg font-bold mb-1 text-copa-blue" style={{ fontFamily: "var(--font-titulo)" }}>
-                DEINE WHATSAPP-NUMMER
-              </label>
+              <p className="text-xs text-copa-blue/70 mb-1" style={{ fontFamily: "var(--font-papernotes)" }}>
+                E-Mail-Adresse zum Speichern deiner Sammelkarte
+              </p>
               <input
-                type="tel"
-                value={data.telefone}
-                onChange={(e) => updateData({ telefone: formatPhone(e.target.value) })}
-                placeholder="01511 234 5678"
-                maxLength={13}
-                autoComplete="tel"
-                inputMode="numeric"
+                type="email"
+                value={data.email}
+                onChange={(e) => updateData({ email: e.target.value.trim() })}
+                placeholder="deine@email.de"
+                maxLength={100}
+                autoComplete="email"
+                inputMode="email"
                 className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:border-copa-blue focus:outline-none transition-colors placeholder:text-gray-400"
                 style={{ fontFamily: "var(--font-papernotes)" }}
               />
-              {errors.telefone && <p className="text-red-500 text-sm mt-1">{errors.telefone}</p>}
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
           </div>
         )}
