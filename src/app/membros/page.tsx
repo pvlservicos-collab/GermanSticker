@@ -505,21 +505,21 @@ function ProductRow({ title, children }: { title: string; children: React.ReactN
 
 function MembrosContent() {
   const searchParams = useSearchParams();
-  const foneParam = searchParams.get("fone") || "";
+  const emailParam = searchParams.get("email") || "";
 
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<MemberData | null>(null);
 
-  const fetchMember = async (fone: string) => {
-    const digits = fone.replace(/\D/g, "");
-    if (digits.length < 9) { setError("Bitte gib eine gültige WhatsApp-Nummer ein (mind. 9 Ziffern)."); return; }
+  const fetchMember = async (val: string) => {
+    const normalized = val.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) { setError("Bitte gib eine gültige E-Mail-Adresse ein."); return; }
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`/api/membros?fone=${digits}`);
-      if (res.status === 404) { setError("Für diese Nummer wurde kein Kauf gefunden. Bitte überprüfe die Eingabe."); setData(null); return; }
+      const res = await fetch(`/api/membros?email=${encodeURIComponent(normalized)}`);
+      if (res.status === 404) { setError("Für diese E-Mail wurde kein Kauf gefunden. Bitte überprüfe die Eingabe."); setData(null); return; }
       if (!res.ok) throw new Error();
       setData(await res.json());
     } catch {
@@ -530,17 +530,16 @@ function MembrosContent() {
   };
 
   useEffect(() => {
-    if (foneParam) { setPhone(foneParam); fetchMember(foneParam); }
+    if (emailParam) { setEmail(emailParam); fetchMember(emailParam); }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foneParam]);
+  }, [emailParam]);
 
   useEffect(() => {
     if (!data || !data.pedidos?.length) return;
-    const digits = phone.replace(/\D/g, "");
-    track("recebeu_figurinha", { email: digits || undefined, nome: data.nome || undefined });
+    track("recebeu_figurinha", { email: email || undefined, nome: data.nome || undefined });
     const temBumpPago = data.items?.some(i => i.item_type === "order_bump" && i.status === "pago");
-    if (temBumpPago) track("recebeu_figurinha_plus", { email: digits || undefined, nome: data.nome || undefined });
-  }, [data, phone]);
+    if (temBumpPago) track("recebeu_figurinha_plus", { email: email || undefined, nome: data.nome || undefined });
+  }, [data, email]);
 
   return (
     <main style={{
@@ -580,19 +579,20 @@ function MembrosContent() {
             <div style={{ textAlign: "center", marginBottom: 24 }}>
               <div style={{ fontSize: 40, marginBottom: 10 }}>🏆</div>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: "#000000", margin: "0 0 6px" }}>
-                Mit WhatsApp-Nummer anmelden
+                Mit E-Mail anmelden
               </h2>
               <p style={{ fontSize: 13, color: "#64748b", margin: 0 }}>
-                Verwende dieselbe Nummer wie beim Kauf
+                Verwende dieselbe E-Mail wie beim Kauf
               </p>
             </div>
             <input
-              type="tel"
-              inputMode="numeric"
-              placeholder="z.B. 015123456789"
-              value={phone}
-              onChange={e => setPhone(e.target.value.replace(/\D/g, ""))}
-              onKeyDown={e => e.key === "Enter" && fetchMember(phone)}
+              type="email"
+              inputMode="email"
+              placeholder="deine@email.de"
+              value={email}
+              autoComplete="email"
+              onChange={e => setEmail(e.target.value.trim())}
+              onKeyDown={e => e.key === "Enter" && fetchMember(email)}
               style={{
                 width: "100%", boxSizing: "border-box",
                 border: "2px solid #e2e8f0", borderRadius: 12, padding: "14px 16px",
@@ -601,7 +601,7 @@ function MembrosContent() {
             />
             {error && <p style={{ color: "#dc2626", fontSize: 13, marginBottom: 12, textAlign: "center" }}>{error}</p>}
             <button
-              onClick={() => fetchMember(phone)}
+              onClick={() => fetchMember(email)}
               disabled={loading}
               style={{
                 width: "100%", background: "#000000", color: "#FABD00", border: "none",
@@ -643,14 +643,14 @@ function MembrosContent() {
                 </div>
               </div>
               <button
-                onClick={() => { setData(null); setPhone(""); }}
+                onClick={() => { setData(null); setEmail(""); }}
                 style={{
                   background: "rgba(255,255,255,.1)", color: "rgba(255,255,255,.7)",
                   border: "1px solid rgba(255,255,255,.15)",
                   borderRadius: 10, padding: "8px 16px", fontSize: 12, cursor: "pointer", fontWeight: 600,
                 }}
               >
-                Nummer ändern
+                E-Mail ändern
               </button>
             </div>
 

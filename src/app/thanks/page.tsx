@@ -7,15 +7,15 @@ import { track } from "@/lib/track";
 const FAQ_ITEMS = [
   {
     q: "Wann erhalte ich meine Sammelkarte?",
-    a: "Deine Sammelkarte wird automatisch erstellt. Du kannst sie im Download-Bereich mit deiner WhatsApp-Nummer abrufen.",
+    a: "Deine Sammelkarte wird automatisch erstellt. Du kannst sie im Download-Bereich mit deiner E-Mail-Adresse abrufen.",
   },
   {
     q: "Wie lade ich meine Karte herunter?",
-    a: "Gib deine Nummer unten ein, rufe den Download-Bereich auf und klicke auf '⬇ PNG herunterladen'.",
+    a: "Gib deine E-Mail unten ein, rufe den Download-Bereich auf und klicke auf '⬇ PNG herunterladen'.",
   },
   {
     q: "Ich habe mehr als 1 Produkt gekauft",
-    a: "Gib deine Nummer im Formular unten ein, um auf alle deine Produkte zuzugreifen.",
+    a: "Gib deine E-Mail-Adresse im Formular unten ein, um auf alle deine Produkte zuzugreifen.",
   },
   {
     q: "Ist die Karte digital oder physisch?",
@@ -132,7 +132,7 @@ function FaqBubble() {
 export default function Obrigado() {
   const router = useRouter();
 
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -140,22 +140,19 @@ export default function Obrigado() {
     track("obrigado");
 
     const params = new URLSearchParams(window.location.search);
-    const foneParam = params.get("fone");
-    if (foneParam) {
-      const digits = foneParam.replace(/\D/g, "").slice(0, 15);
-      if (digits.length >= 9) { router.replace(`/membros?fone=${digits}`); return; }
-    }
+    const emailParam = params.get("email");
+    if (emailParam) { router.replace(`/membros?email=${encodeURIComponent(emailParam)}`); return; }
   }, [router]);
 
   const handleLogin = async () => {
-    const digits = phone.replace(/\D/g, "");
-    if (digits.length < 9) { setError("Bitte gib eine gültige Handynummer ein (mind. 9 Ziffern)."); return; }
+    const val = email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { setError("Bitte gib eine gültige E-Mail-Adresse ein."); return; }
     setLoading(true); setError(null);
     try {
-      const res = await fetch(`/api/membros?fone=${digits}`);
-      if (res.status === 404) { setError("Für diese Nummer wurde kein Kauf gefunden."); return; }
+      const res = await fetch(`/api/membros?email=${encodeURIComponent(val)}`);
+      if (res.status === 404) { setError("Für diese E-Mail wurde kein Kauf gefunden."); return; }
       if (!res.ok) throw new Error();
-      router.push(`/membros?fone=${digits}`);
+      router.push(`/membros?email=${encodeURIComponent(val)}`);
     } catch {
       setError("Fehler beim Überprüfen. Bitte versuche es erneut.");
     } finally {
@@ -187,28 +184,29 @@ export default function Obrigado() {
       <div style={{ width: "100%", maxWidth: 480 }}>
         <div style={{ background: "#fff", borderRadius: 24, padding: "32px 28px", boxShadow: "0 20px 60px rgba(0,0,0,.25)" }}>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: "#000000", margin: "0 0 8px", display: "flex", alignItems: "center", gap: 8 }}>
-            📱 Lade deine Karte mit deiner Nummer herunter:
+            📧 Lade deine Karte mit deiner E-Mail herunter:
           </h2>
           <p style={{ fontSize: 14, color: "#64748b", margin: "0 0 20px", fontFamily: "var(--font-papernotes)" }}>
-            Gib die Nummer ein, die du zu Beginn angegeben hast, um auf deine Karte und alle deine Produkte zuzugreifen.
+            Gib die E-Mail-Adresse ein, die du zu Beginn angegeben hast, um auf deine Karte zuzugreifen.
           </p>
 
           <input
-            type="tel"
-            inputMode="numeric"
-            placeholder="z.B. 015123456789"
-            value={phone}
-            maxLength={15}
+            type="email"
+            inputMode="email"
+            placeholder="deine@email.de"
+            value={email}
+            maxLength={100}
             disabled={loading}
             autoFocus
-            onChange={e => { setPhone(e.target.value.replace(/\D/g, "")); setError(null); }}
+            autoComplete="email"
+            onChange={e => { setEmail(e.target.value.trim()); setError(null); }}
             onKeyDown={e => e.key === "Enter" && !loading && handleLogin()}
             style={{
               width: "100%", boxSizing: "border-box",
               border: `2px solid ${error ? "#ef4444" : "#000000"}`,
               borderRadius: 14, padding: "16px 18px",
-              fontSize: 18, outline: "none", color: "#0f172a",
-              fontWeight: 600, letterSpacing: ".04em",
+              fontSize: 16, outline: "none", color: "#0f172a",
+              fontWeight: 600,
               marginBottom: 12, textAlign: "center",
             }}
           />
