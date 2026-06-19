@@ -26,7 +26,7 @@ function compressToBase64(file: File, maxSize = 512, quality = 0.7): Promise<str
       const dataUrl = canvas.toDataURL("image/jpeg", quality);
       resolve(dataUrl.split(",")[1]);
     };
-    img.onerror = () => reject(new Error("Error al cargar la imagen"));
+    img.onerror = () => reject(new Error("Fehler beim Laden des Bildes"));
     img.src = URL.createObjectURL(file);
   });
 }
@@ -390,8 +390,8 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
 
       {appStep === "loading-photo" && (
         <LoadingScreen
-          title="CARGANDO FOTO"
-          gifUrl="https://media.giphy.com/media/SWcxJngaq8T5BMA2LZ/giphy.gif"
+          title="FOTO WIRD GELADEN"
+          gifUrl="https://media.giphy.com/media/Ag96YQ2TJw4Lk4tUzn/giphy.gif"
         />
       )}
 
@@ -415,8 +415,8 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
 
       {appStep === "loading-generate" && (
         <LoadingScreen
-          title="GENERANDO TU CROMO"
-          gifUrl="https://media.giphy.com/media/SWcxJngaq8T5BMA2LZ/giphy.gif"
+          title="DEINE KARTE WIRD ERSTELLT"
+          gifUrl="https://media.giphy.com/media/Ag96YQ2TJw4Lk4tUzn/giphy.gif"
           longWait
           startTime={genStartTime}
         />

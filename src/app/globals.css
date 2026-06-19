@@ -41,9 +41,9 @@
   --font-titulo: 'Anton', sans-serif;
   --color-copa-yellow: #FABD00;
   --color-copa-yellow-light: #FFD23F;
-  --color-copa-blue: #8B0000;
-  --color-copa-blue-hover: #6E0000;
-  --color-copa-green: #C60B1E;
+  --color-copa-blue: #000000;
+  --color-copa-blue-hover: #1a1a1a;
+  --color-copa-green: #DD0000;
   --color-copa-white: #FFFFFF;
 }
 
@@ -66,7 +66,7 @@ body {
   background: #FFD23F;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C60B1E;
+  background: #DD0000;
   border-radius: 3px;
 }
 
@@ -77,8 +77,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(198, 11, 30, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(198, 11, 30, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 0, 0, 0.6); }
 }
 
 @keyframes slide-up {

@@ -84,13 +84,13 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             className="text-2xl font-bold text-copa-blue mb-2"
             style={{ fontFamily: "var(--font-titulo)" }}
           >
-            INTÉNTALO DE NUEVO
+            NOCHMAL VERSUCHEN
           </h2>
           <p className="text-base text-gray-600 mb-2" style={{ fontFamily: "var(--font-papernotes)" }}>
-            A veces los servidores de OpenAI se congestionan.
+            Manchmal sind die OpenAI-Server überlastet.
           </p>
           <p className="text-base text-gray-600 mb-6" style={{ fontFamily: "var(--font-papernotes)" }}>
-            Haz clic en intentar de nuevo y el cromo se generará automáticamente.
+            Klicke auf &ldquo;Erneut versuchen&rdquo; und die Karte wird automatisch erstellt.
           </p>
           <button
             onClick={onRetry}
@@ -98,14 +98,14 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
               shadow-lg hover:bg-copa-blue-hover active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em]"
             style={{ fontFamily: "var(--font-titulo)" }}
           >
-            INTENTAR DE NUEVO
+            ERNEUT VERSUCHEN
           </button>
         </div>
       ) : (
         <>
         <div className="flex flex-col items-center w-full max-w-sm animate-slide-up">
 
-          {/* Preview */}
+          {/* Vorschau */}
           <div
             className="relative w-48 md:w-56 rounded-xl overflow-hidden shadow-2xl border-3 border-copa-blue mb-6"
             onContextMenu={(e) => e.preventDefault()}
@@ -113,7 +113,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={stickerUrl}
-              alt="Cromo personalizado"
+              alt="Personalisierte WM-Sammelkarte"
               className="w-full aspect-[2/3] object-cover"
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
@@ -133,7 +133,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
                   </p>
                   <p className="text-white text-[9px] font-bold tracking-widest whitespace-nowrap mt-1"
                     style={{ fontFamily: "var(--font-papernotes)", textShadow: "1px 1px 3px rgba(0,0,0,0.3)", opacity: 0.25 }}>
-                    mi-cromo-mundial2026 &nbsp;&nbsp; mi-cromo-mundial2026 &nbsp;&nbsp; mi-cromo-mundial2026
+                    meine-wm-sammelkarte2026 &nbsp;&nbsp; meine-wm-sammelkarte2026 &nbsp;&nbsp; meine-wm-sammelkarte2026
                   </p>
                 </div>
               ))}
@@ -141,26 +141,26 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             <div className="absolute inset-0" />
           </div>
 
-          {/* GOOOL */}
+          {/* TOOOR */}
           <h1
-            className="text-6xl md:text-8xl text-[#C60B1E] text-center tracking-[0.1em] mb-1"
+            className="text-6xl md:text-8xl text-[#000000] text-center tracking-[0.1em] mb-1"
             style={{ fontFamily: "var(--font-titulo)", fontWeight: 400 }}
           >
-            ¡GOOOL!
+            TOOOR!
           </h1>
 
           <p
             className="text-lg md:text-xl text-[#1a1a1a] text-center font-bold mb-2"
             style={{ fontFamily: "var(--font-papernotes)" }}
           >
-            ¡Tu cromo está listo!
+            Deine Sammelkarte ist fertig!
           </p>
 
           <p
             className="text-base text-[#1a1a1a]/70 text-center mb-6"
             style={{ fontFamily: "var(--font-papernotes)" }}
           >
-            ¡Consigue tu cromo HOY y participa en el sorteo de una entrada para el Mundial!<br />Sorteo el 11/07/2026
+            Hol dir deine Karte HEUTE und nimm an der Verlosung eines WM-Tickets teil!<br />Ziehung am 11.07.2026
           </p>
 
           <p
@@ -176,17 +176,17 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
               active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.15em] relative overflow-hidden"
             style={{
               fontFamily: "var(--font-titulo)",
-              background: "linear-gradient(135deg, #E2101F 0%, #AA151B 100%)",
-              boxShadow: "0 6px 24px rgba(170,21,27,0.45), inset 0 1px 0 rgba(255,255,255,0.15)",
+              background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
+              boxShadow: "0 6px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.15)",
             }}
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              ⚽ DESBLOQUEAR MI CROMO
+              ⚽ MEINE KARTE FREISCHALTEN
             </span>
           </button>
 
           <p className="text-sm text-[#1a1a1a]/70 text-center mt-3" style={{ fontFamily: "var(--font-papernotes)" }}>
-            ✅ Incluye descarga en alta calidad
+            ✅ Inklusive Download in hoher Qualität
           </p>
         </div>
 
@@ -195,4 +195,3 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
     </section>
   );
 }
-

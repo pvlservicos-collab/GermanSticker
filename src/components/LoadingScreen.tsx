@@ -11,32 +11,31 @@ interface LoadingScreenProps {
 }
 
 const curiosidades = [
-  "¿Sabías? El Mundial 2026 será el primero con 48 selecciones. ¡Va a ser histórico!",
-  "¿Sabías? España es campeona del mundo desde 2010, tras vencer a Holanda en la final.",
-  "¿Sabías? La Roja conquistó la Eurocopa 2024, su cuarto título continental.",
-  "¿Sabías? El primer Mundial fue en 1930, en Uruguay.",
-  "¿Sabías? El récord de goles en un Mundial pertenece a Just Fontaine: 13 goles en 1958.",
-  "¿Sabías? Iniesta marcó el gol que dio a España su primer Mundial, en la final de 2010.",
-  "¿Sabías? El Santiago Bernabéu tiene capacidad para más de 80.000 espectadores.",
-  "¿Sabías? El Mundial 2026 se disputará en EE.UU., México y Canadá.",
-  "¿Sabías? El gol más rápido en la historia de los Mundiales se marcó a los 10,8 segundos.",
-  "¿Sabías? España venció a Italia 4-0 en la final de la Eurocopa 2012, la mayor goleada en una final.",
-  "¿Sabías? Miroslav Klose es el máximo goleador histórico de los Mundiales con 16 goles.",
-  "¿Sabías? España es una de las pocas selecciones en ganar tres grandes torneos consecutivos (Eurocopa 2008, Mundial 2010 y Eurocopa 2012).",
-  "¿Sabías? La camiseta roja de España es conocida como 'La Roja' en todo el mundo.",
-  "¿Sabías? Lamine Yamal se convirtió en el goleador más joven en la historia de la Eurocopa en 2024.",
-  "¿Sabías? El Camp Nou es uno de los estadios más grandes de Europa.",
-  "¿Sabías? España ganó la Liga de Naciones de la UEFA en 2023.",
-  "¿Sabías? El Real Madrid es el club con más Champions League de la historia, con 15 títulos.",
-  "¿Sabías? El Athletic Club de Bilbao solo alinea jugadores formados en el País Vasco.",
-  "¿Sabías? David Villa es el máximo goleador histórico de la selección española.",
-  "¿Sabías? La 'tiki-taka' española marcó una época en el fútbol mundial entre 2008 y 2012.",
-  "¿Sabías? Sergio Ramos es el jugador con más partidos disputados con la selección española.",
-  "¿Sabías? El FC Barcelona y su cantera, La Masia, formaron a leyendas como Iniesta, Xavi y Messi.",
-  "¿Sabías? España será una de las sedes del Mundial de 2030, celebrando el centenario del torneo.",
-  "¿Sabías? El Atlético de Madrid ganó LaLiga en la temporada 2020-21.",
-  "¿Sabías? Andrés Iniesta y Xavi Hernández son considerados los grandes maestros del centro del campo español.",
-  "¿Sabías? España debutó en los Mundiales en 1934 y nunca ha dejado de crecer como potencia futbolística.",
+  "Wusstest du? Die WM 2026 wird erstmals mit 48 Mannschaften in den USA, Mexiko und Kanada stattfinden!",
+  "Wusstest du? Deutschland hat die Weltmeisterschaft 4 Mal gewonnen: 1954, 1974, 1990 und 2014.",
+  "Wusstest du? Miroslav Klose ist mit 16 Toren der Rekordtorschütze bei Weltmeisterschaften.",
+  "Wusstest du? Das 'Wunder von Bern' 1954 gilt als eines der größten Sportereignisse Deutschlands.",
+  "Wusstest du? Deutschland besiegte Brasilien 2014 mit 7:1 – eines der spektakulärsten WM-Ergebnisse aller Zeiten.",
+  "Wusstest du? Franz Beckenbauer ist der einzige Deutsche, der die WM als Spieler (1974) und Trainer (1990) gewann.",
+  "Wusstest du? Oliver Kahn war einer der besten Torhüter der Welt und gewann 2002 den Goldenen Handschuh bei der WM.",
+  "Wusstest du? Gerd Müller erzielte in seiner Karriere über 700 Tore und gilt als einer der besten Stürmer aller Zeiten.",
+  "Wusstest du? Die Bundesliga ist eine der beliebtesten Ligen der Welt mit durchschnittlich über 40.000 Zuschauern pro Spiel.",
+  "Wusstest du? Bayern München hat die Bundesliga mehr als 30 Mal gewonnen und ist damit Rekordmeister.",
+  "Wusstest du? Bayer Leverkusen wurde 2023/24 zum ersten Mal Bundesligameister – und das ohne eine einzige Niederlage!",
+  "Wusstest du? Borussia Dortmunds Signal Iduna Park fasst über 80.000 Zuschauer und gilt als eines der lautesten Stadien der Welt.",
+  "Wusstest du? Thomas Müller ist für seine einzigartige Spielweise als 'Raumdeuter' bekannt.",
+  "Wusstest du? Lothar Matthäus ist der Spieler mit den meisten WM-Einsätzen und spielte für Deutschland bei 5 Weltmeisterschaften.",
+  "Wusstest du? Toni Kroos kehrte 2024 für die EM aus dem Ruhestand zurück und führte Deutschland ins Halbfinale.",
+  "Wusstest du? Die Deutsche Nationalmannschaft trägt traditionell weiße Trikots und gilt als 'Die Mannschaft'.",
+  "Wusstest du? Deutschland ist eines von nur drei Ländern, das sowohl bei Männern als auch bei Frauen Weltmeister wurde.",
+  "Wusstest du? Der DFB (Deutscher Fußball-Bund) ist einer der größten nationalen Fußballverbände der Welt.",
+  "Wusstest du? Jürgen Klinsmann erzielte bei der WM 1994 drei Tore und war einer der besten Stürmer seiner Generation.",
+  "Wusstest du? Die Allianz Arena in München gehört zu den modernsten Fußballstadien der Welt.",
+  "Wusstest du? Karl-Heinz Rummenigge gilt als einer der besten deutschen Fußballer der 1980er Jahre.",
+  "Wusstest du? Deutschland war bei der WM 2014 in Brasilien über vier Wochen ungeschlagen und holte den Titel.",
+  "Wusstest du? Der erste WM-Sieg Deutschlands war 1954 in der Schweiz gegen Ungarn mit 3:2 – das 'Wunder von Bern'.",
+  "Wusstest du? Sepp Herberger ist als Trainer des Wunderteams von 1954 eine Legende des deutschen Fußballs.",
+  "Wusstest du? Deutschland wurde bei der EM 1996 in England Europameister – mit einem Golden Goal von Oliver Bierhoff.",
 ];
 
 export default function LoadingScreen({ title, gifUrl, longWait, startTime }: LoadingScreenProps) {
@@ -106,27 +105,27 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         {longWait && (
           <p className="text-sm font-bold text-copa-blue text-center -mt-4" style={{ fontFamily: "var(--font-papernotes)" }}>
-            No cierres esta pantalla, puede tardar hasta 2 minutos.
+            Nicht schließen – kann bis zu 2 Minuten dauern.
           </p>
         )}
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={gifUrl}
-          alt="Futbolista"
+          alt="Fußballer"
           style={{ height: 260, width: "auto", borderRadius: 16, objectFit: "cover", display: "block" }}
         />
 
         {longWait && (
           <div className="text-center leading-snug">
             <p className="text-base font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              ¡Consigue tu cromo HOY y participa en el sorteo de una entrada para el Mundial!
+              Hol dir deine Karte HEUTE und nimm an der Verlosung eines WM-Tickets teil!
             </p>
             <p className="text-4xl font-black text-copa-green my-1" style={{ fontFamily: "var(--font-titulo)" }}>
-              Copa del Mundo 2026
+              Weltmeisterschaft 2026
             </p>
             <p className="text-sm text-copa-blue mt-2" style={{ fontFamily: "var(--font-papernotes)" }}>
-              Sorteo el 11/07/2026, inicio del Mundial.
+              Ziehung am 11.07.2026, WM-Beginn.
             </p>
           </div>
         )}
@@ -138,14 +137,14 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
           {longWait ? (
             <span className="text-copa-blue font-bold">{curiosidades[curiosidadeIndex]}</span>
           ) : (
-            "¡Este es un crack!"
+            "Das ist ein echter Star!"
           )}
         </p>
 
         <div className="w-full">
           <div className="flex justify-between items-center mb-1">
             <span className="text-xs font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              {"Cargando..."}
+              {"Laden..."}
             </span>
             <span className="text-sm font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
               {percent}%

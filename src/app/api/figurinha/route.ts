@@ -191,7 +191,7 @@ INSTRUCTIONS:
 
 1. REMOVE the adult athlete from Image 2 entirely.
 
-2. GENERATE a chest-up portrait of the subject wearing the red Spain national team home jersey (red body, Royal Spanish Football Federation (RFEF) crest on the left chest, Adidas logo on the right chest), facing forward, arms down.
+2. GENERATE a chest-up portrait of the subject wearing the white Germany national team home jersey (white body, German Football Association (DFB) crest on the left chest, Adidas logo on the right chest), facing forward, arms down.
 
    BODY PROPORTIONS — CRITICAL:
    - Use the subject's FACE from Image 1 as your scale anchor. The shoulders, torso, and jersey must be sized to fit that face naturally.
@@ -203,7 +203,7 @@ INSTRUCTIONS:
 
 4. Place the portrait centered where the original athlete was in the card.
 
-5. Keep ALL other card elements from Image 2 unchanged, pixel-identical: the background, the "26" numerals graphic behind the portrait, the Spain flag shield emblem and vertical "ESP" outline lettering on the right edge, the rounded text banners, and all borders/card edges.
+5. Keep ALL other card elements from Image 2 unchanged, pixel-identical: the background, the "26" numerals graphic behind the portrait, the Germany flag shield emblem and vertical "GER" outline lettering on the right edge, the rounded text banners, and all borders/card edges.
 
 6. Update the text fields:
 [NAME]: ${nomeUpper}

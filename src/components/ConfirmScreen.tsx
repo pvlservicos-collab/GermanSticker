@@ -13,16 +13,16 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
   const formatDate = (iso: string) => {
     if (!iso) return "—";
     const [y, m, d] = iso.split("-");
-    return `${d}/${m}/${y}`;
+    return `${d}.${m}.${y}`;
   };
 
   const rows = [
-    { label: "NOMBRE",    value: data.nome || "—" },
+    { label: "NAME",      value: data.nome || "—" },
     { label: "WHATSAPP",  value: data.telefone || "—" },
-    { label: "CLUB",      value: data.clube || "—" },
-    { label: "FECHA",     value: formatDate(data.dataNascimento) },
-    ...(data.peso   ? [{ label: "PESO",   value: `${data.peso} kg` }]   : []),
-    ...(data.altura ? [{ label: "ALTURA", value: `${data.altura} cm` }] : []),
+    { label: "VEREIN",    value: data.clube || "—" },
+    { label: "DATUM",     value: formatDate(data.dataNascimento) },
+    ...(data.peso   ? [{ label: "GEWICHT", value: `${data.peso} kg` }]   : []),
+    ...(data.altura ? [{ label: "GRÖSSE",  value: `${data.altura} cm` }] : []),
   ];
 
   return (
@@ -33,11 +33,11 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
       {/* Card */}
       <div className="bg-white rounded-2xl w-full max-w-md shadow-lg overflow-hidden animate-slide-up">
 
-        {/* Barra de progreso */}
+        {/* Fortschrittsbalken */}
         <div className="px-5 pt-5 pb-2">
           <div className="flex justify-between items-center mb-2">
             <span className="text-xs font-bold text-gray-500" style={{ fontFamily: "var(--font-papernotes)" }}>
-              Paso 4 de 4
+              Schritt 4 von 4
             </span>
             <span className="text-xs font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
               100%
@@ -48,23 +48,23 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
           </div>
         </div>
 
-        {/* Corpo */}
+        {/* Inhalt */}
         <div className="px-5 pb-6 pt-4 flex flex-col items-center">
 
-          {/* Título */}
+          {/* Titel */}
           <h2
             className="text-2xl font-bold text-copa-blue text-center mb-3 tracking-wide"
             style={{ fontFamily: "var(--font-titulo)" }}
           >
-            REVISA TUS DATOS
+            ÜBERPRÜFE DEINE DATEN
           </h2>
 
-          {/* Subtítulo */}
+          {/* Untertitel */}
           <p className="text-sm text-gray-600 text-center mb-1" style={{ fontFamily: "var(--font-papernotes)" }}>
-            El cromo se generará en breve. Revisa los datos con atención.
+            Deine Karte wird in Kürze erstellt. Überprüfe die Daten sorgfältig.
           </p>
           <p className="text-sm font-bold text-gray-800 text-center mb-5" style={{ fontFamily: "var(--font-papernotes)" }}>
-            No realizamos cambios después de la aprobación y el pago.
+            Nach Bestätigung und Zahlung sind keine Änderungen mehr möglich.
           </p>
 
           {/* Foto */}
@@ -72,7 +72,7 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
             {fotoPreviewUrl ? (
               <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-copa-blue shadow-md mb-2">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={fotoPreviewUrl} alt="Tu foto" className="w-full h-full object-cover" />
+                <img src={fotoPreviewUrl} alt="Dein Foto" className="w-full h-full object-cover" />
               </div>
             ) : (
               <div className="w-20 h-20 rounded-full bg-gray-200 border-4 border-copa-blue flex items-center justify-center mb-2">
@@ -80,11 +80,11 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
               </div>
             )}
             <p className="text-xs font-bold text-copa-blue text-center" style={{ fontFamily: "var(--font-papernotes)" }}>
-              VERIFICA QUE LA CARA SE VEA BIEN
+              STELLE SICHER, DASS DAS GESICHT GUT ZU SEHEN IST
             </p>
           </div>
 
-          {/* Tabela de dados */}
+          {/* Datentabelle */}
           <div className="w-full rounded-xl overflow-hidden border border-gray-100 mb-6">
             {rows.map((row, i) => (
               <div
@@ -102,33 +102,33 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
             ))}
           </div>
 
-          {/* Botón confirmar */}
+          {/* Bestätigen-Button */}
           <button
             onClick={onConfirm}
             className="w-full text-copa-white font-bold text-lg py-4 rounded-2xl
               shadow-lg active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em] mb-3"
             style={{
               fontFamily: "var(--font-titulo)",
-              background: "linear-gradient(135deg, #E2101F 0%, #AA151B 100%)",
-              boxShadow: "0 6px 24px rgba(170,21,27,0.45)",
+              background: "linear-gradient(135deg, #1a1a1a 0%, #000000 100%)",
+              boxShadow: "0 6px 24px rgba(0,0,0,0.45)",
             }}
           >
-            ENTENDIDO, GENERAR CROMO ⚽
+            VERSTANDEN, KARTE ERSTELLEN ⚽
           </button>
 
-          {/* Botón volver */}
+          {/* Zurück-Button */}
           <button
             onClick={onBack}
             className="w-full bg-white text-copa-blue font-bold text-base py-4 rounded-2xl
-              border-2 border-copa-blue hover:bg-red-50 active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em]"
+              border-2 border-copa-blue hover:bg-gray-50 active:scale-95 transition-all duration-200 cursor-pointer tracking-[0.1em]"
             style={{ fontFamily: "var(--font-titulo)" }}
           >
-            CORREGIR DATOS
+            DATEN KORRIGIEREN
           </button>
         </div>
       </div>
 
-      {/* Puntos */}
+      {/* Punkte */}
       <div className="flex gap-2 mt-5">
         {[0, 1, 2, 3].map(i => (
           <div key={i} className="w-3 h-3 rounded-full bg-copa-blue" />
@@ -137,4 +137,3 @@ export default function ConfirmScreen({ data, fotoPreviewUrl, onConfirm, onBack 
     </section>
   );
 }
-
