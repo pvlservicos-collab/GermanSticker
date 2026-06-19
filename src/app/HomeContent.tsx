@@ -76,6 +76,7 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
   dataRef.current = data;
   const sessionRef = useRef<string>("");
   const generatingRef = useRef(false);
+  const genStartRef = useRef<number>(0);
 
   useEffect(() => {
     let sid = sessionStorage.getItem("_fsid");
@@ -280,14 +281,15 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
     }
   };
 
-  const [errorTimestamp, setErrorTimestamp] = useState<string | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
-
-  const generateFigurinha = useCallback(async (retryAfterError?: string, attempt = 0) => {
+  const generateFigurinha = useCallback(async (attempt = 0) => {
     if (generatingRef.current && attempt === 0) return; // guard contra duplo clique
     if (attempt === 0) generatingRef.current = true;
-    const MAX_RETRIES = 4;
-    if (attempt > MAX_RETRIES) { generatingRef.current = false; return; }
+    // Desiste após 15 minutos no total
+    if (Date.now() - genStartRef.current > 15 * 60 * 1000) {
+      generatingRef.current = false;
+      setAppStep("result");
+      return;
+    }
     const current = dataRef.current;
     try {
       if (!current.foto) throw new Error("Sem foto");
@@ -306,7 +308,6 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
           peso: current.peso || undefined,
           altura: current.altura || undefined,
           fotoBase64,
-          errorTimestamp: retryAfterError || undefined,
           retryAttempt: attempt,
         }),
       });
@@ -318,7 +319,6 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
         const dataUrl = `data:${result.mimeType};base64,${result.imageBase64}`;
         setStickerUrl(dataUrl);
         setStickerId(result.stickerId || "");
-        setErrorTimestamp(null);
         sessionStorage.setItem("figurinha_sticker_url", dataUrl);
         sessionStorage.setItem("figurinha_sticker_id", result.stickerId || "");
         try { sessionStorage.removeItem("_pending_tel"); } catch { /* ignore */ }
@@ -332,11 +332,8 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
       console.warn(`Tentativa ${attempt + 1} falhou (rede):`, error);
     }
 
-    const now = new Date().toISOString();
-    setErrorTimestamp(now);
-    setRetryCount(attempt + 1);
     await new Promise(r => setTimeout(r, 2000));
-    generateFigurinha(now, attempt + 1);
+    generateFigurinha(attempt + 1);
   }, []);
 
   const handleQuizNext = useCallback(() => {
@@ -402,7 +399,9 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
           onConfirm={() => {
             if (generatingRef.current) return;
             try { sessionStorage.setItem("_pending_tel", data.telefone.replace(/\D/g, "").slice(0, 20)); } catch { /* ignore */ }
-            setGenStartTime(Date.now());
+            const now = Date.now();
+            genStartRef.current = now;
+            setGenStartTime(now);
             setAppStep("loading-generate");
             generateFigurinha();
           }}
@@ -439,9 +438,11 @@ export default function HomeContent({ checkoutUrl, price, oferta: ofertaProp }: 
             generatingRef.current = false;
             sessionStorage.removeItem("figurinha_sticker_url");
             sessionStorage.removeItem("figurinha_sticker_id");
-            setGenStartTime(Date.now());
+            const now = Date.now();
+            genStartRef.current = now;
+            setGenStartTime(now);
             setAppStep("loading-generate");
-            generateFigurinha(errorTimestamp || undefined, retryCount);
+            generateFigurinha(0);
           }}
         />
       )}
