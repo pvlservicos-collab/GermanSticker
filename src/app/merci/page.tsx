@@ -8,7 +8,7 @@ export default function Merci() {
 
   useEffect(() => {
     const params = window.location.search;
-    router.replace(`/obrigado${params}`);
+    router.replace(`/thanks${params}`);
   }, [router]);
 
   return null;
