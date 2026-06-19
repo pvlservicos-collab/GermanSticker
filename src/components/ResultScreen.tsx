@@ -181,7 +181,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
             }}
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
-              ⚽ MEINE KARTE FREISCHALTEN
+              MEINE KARTE FREISCHALTEN
             </span>
           </button>
 
