@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Oculta elementos visuais do script Cartpanda sem quebrar o tracking */
+[class^="cpd-"], [class*=" cpd-"], [id^="cpd-"], [id^="cartpanda-"] {
+  display: none !important;
+}
+
 @keyframes skeleton-shimmer {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
