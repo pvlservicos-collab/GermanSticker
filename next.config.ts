@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   async headers() {
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.utmify.com.br https://connect.facebook.net",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.utmify.com.br https://connect.facebook.net https://assets.mycartpanda.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://flagcdn.com https://*.public.blob.vercel-storage.com https://media.giphy.com https://media0.giphy.com https://media1.giphy.com https://media2.giphy.com https://media3.giphy.com https://media4.giphy.com https://www.facebook.com",
