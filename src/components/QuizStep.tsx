@@ -259,7 +259,7 @@ export default function QuizStep({ step, data, updateData, onNext, onBack, total
 
             {/* E-Mail */}
             <div>
-              <p className="text-xs text-copa-blue/70 mb-1" style={{ fontFamily: "var(--font-papernotes)" }}>
+              <p className="text-copa-blue/70 mb-1" style={{ fontFamily: "var(--font-papernotes)", fontSize: "1.8vh" }}>
                 E-Mail-Adresse zum Speichern deiner Sammelkarte
               </p>
               <input
