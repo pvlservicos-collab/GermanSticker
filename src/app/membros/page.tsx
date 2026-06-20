@@ -67,7 +67,7 @@ const CATALOG: CatalogProduct[] = [
     name: "WM-Paket 2026",
     desc: "Erlebe das WM-Erlebnis intensiver mit dem offiziellen PDF-Paket",
     renderImage: (bought) => <ProductImg src="/embalagensfigurinhas.webp" alt="WM-Paket 2026" bought={bought} />,
-    acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HQ",
+    acquireUrl: "https://folem.mycartpanda.com/checkout/211129820:1",
     downloadLabel: "PDF herunterladen",
     checkBought: (d) =>
       d.items.some(i =>
@@ -87,7 +87,7 @@ const CATALOG: CatalogProduct[] = [
     name: "Poster A4",
     desc: "PDF zum Ausdrucken und Dekorieren zu Hause herunterladen",
     renderImage: (bought) => <ProductImg src="/poster.webp" alt="Poster A4 PDF" bought={bought} />,
-    acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HR",
+    acquireUrl: "https://folem.mycartpanda.com/checkout/211129820:1",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("poster") ||
@@ -103,7 +103,7 @@ const CATALOG: CatalogProduct[] = [
     name: "Sammelkarte Ronaldo",
     desc: "Nationalmannschafts-Trikot – PDF-Paket zum Ausdrucken",
     renderImage: (bought) => <ProductImg src="/figurinhamodelo.webp" alt="Sammelkarte Ronaldo" bought={bought} />,
-    acquireUrl: "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT",
+    acquireUrl: "https://folem.mycartpanda.com/checkout/211129820:1",
     checkBought: (d) =>
       d.items.some(i =>
         i.offer_name?.toLowerCase().includes("messi") ||
@@ -395,7 +395,7 @@ function PosterA4Card({ data, width = 250 }: { data: MemberData; width?: number 
               </div>
             </>
           ) : (
-            <a href="https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HR" style={{
+            <a href="https://folem.mycartpanda.com/checkout/211129820:1" style={{
               display: "block", textAlign: "center",
               background: "#FABD00", color: "#000000",
               borderRadius: 12, padding: "11px 8px", fontSize: 13, fontWeight: 900,
@@ -473,7 +473,7 @@ function MessiCard({ data, width = 250 }: { data: MemberData; width?: number }) 
           </div>
         ) : (
           <a
-            href="https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2HT"
+            href="https://folem.mycartpanda.com/checkout/211129820:1"
             style={{
               display: "block", textAlign: "center",
               background: "#FABD00", color: "#000000",
