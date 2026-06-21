@@ -105,7 +105,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         {longWait && (
           <p className="text-sm font-bold text-copa-blue text-center -mt-4" style={{ fontFamily: "var(--font-papernotes)" }}>
-            Nicht schließen – kann bis zu 2 Minuten dauern.
+            Bitte nicht schließen – dies kann bis zu 2 Minuten dauern, da wir in hoher Qualität generieren.
           </p>
         )}
 
@@ -121,7 +121,7 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
             <p className="text-base font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
               Hol dir deine Karte HEUTE und nimm an der Verlosung eines WM-Tickets teil!
             </p>
-            <p className="text-4xl font-black text-copa-green my-1" style={{ fontFamily: "var(--font-titulo)" }}>
+            <p className="text-2xl md:text-4xl font-black text-copa-green my-1" style={{ fontFamily: "var(--font-titulo)" }}>
               Weltmeisterschaft 2026
             </p>
             <p className="text-sm text-copa-blue mt-2" style={{ fontFamily: "var(--font-papernotes)" }}>
@@ -143,9 +143,16 @@ export default function LoadingScreen({ title, gifUrl, longWait, startTime }: Lo
 
         <div className="w-full">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
-              {"Laden..."}
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-xs font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
+                {"Laden..."}
+              </span>
+              {longWait && (
+                <span className="text-[10px] text-copa-blue/60" style={{ fontFamily: "var(--font-papernotes)" }}>
+                  {elapsed}s
+                </span>
+              )}
+            </div>
             <span className="text-sm font-bold text-copa-blue" style={{ fontFamily: "var(--font-papernotes)" }}>
               {percent}%
             </span>
