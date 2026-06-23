@@ -48,7 +48,7 @@ interface Props {
 
 export default function PreviewDescontoClient({ imageUrl, nome, stickerId }: Props) {
   const handleCheckout = () => {
-    const checkoutUrl = "https://checkout.figurinhadacopadomundo.com/VCCL1O8SD2GE";
+    const checkoutUrl = "https://buy.stripe.com/eVq28r49t01Pewtb2v5Vu07";
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
     const utms: string[] = [];

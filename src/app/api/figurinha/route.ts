@@ -269,7 +269,6 @@ The result must look like a real printed collectible sticker card. The portrait 
           await new Promise(r => setTimeout(r, 5000));
         } else {
           console.log(`Key ${keyIdx + 1} tentativa ${attempt + 1} erro (${status}): ${errMsg.slice(0, 80)}`);
-          await new Promise(r => setTimeout(r, 3000));
         }
       }
       attempt++;

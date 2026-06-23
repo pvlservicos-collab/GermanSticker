@@ -19,7 +19,7 @@ export default function ResultScreen({ stickerUrl, stickerId, onRetry, onCheckou
     sessionStorage.removeItem("figurinha_sticker_url");
     sessionStorage.removeItem("figurinha_sticker_id");
     try { localStorage.setItem("figurinha_sticker_id", stickerId); } catch { /* ignore */ }
-    const checkoutUrl = checkoutUrlProp || "https://folem.mycartpanda.com/checkout/211129820:1";
+    const checkoutUrl = checkoutUrlProp || "https://buy.stripe.com/eVq28r49t01Pewtb2v5Vu07";
 
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "ttclid", "sck", "src"];
